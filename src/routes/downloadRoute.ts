@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import DownloadController from '../controllers/downloadController';
+import { validateDownload } from '../middlewares/validateMiddleware';
 
 export default class DownloadRoutes {
 
@@ -11,8 +12,6 @@ export default class DownloadRoutes {
   }
 
   private initializeRoutes(): void {
-    this.router.post('/download', (req, res) => {
-      DownloadController.startDownload(req, res)
-    })
+    this.router.post('/download', validateDownload, DownloadController.startDownload)
   }
 }

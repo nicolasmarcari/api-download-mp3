@@ -2,10 +2,10 @@ import { Request, Response } from 'express';
 
 export default class DownloadController {
 
-  static startDownload(req: Request, res: Response): Response {
+  static startDownload(req: Request, res: Response): void {
     const { url, title } = req.body;
 
-    return res.status(200).send("Download initialized!")
+    res.status(200).send("Download initialized!")
   }
 
 }
