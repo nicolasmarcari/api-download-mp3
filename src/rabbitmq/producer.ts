@@ -14,6 +14,6 @@ export default class Producer {
       persistent: true
     });
 
-    console.log(`send message to queue`);
+    console.log(`message sended to queue ${this.queue}`);
   }
 }

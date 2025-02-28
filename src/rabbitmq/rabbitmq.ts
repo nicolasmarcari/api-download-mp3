@@ -6,8 +6,9 @@ export default class RabbitMQ {
 
   static async connect(): Promise<void> {
     try{
-      this.connection = await amqp.connect('amqp://root:root@localhost:5672');
+      this.connection = await amqp.connect(String(process.env.RABBIT_URI));
       this.channel = await this.connection.createChannel();
+      console.log('RabbitMQ connected!');
     } catch (error) {
       console.log(`Error to connect on RabbitMQ ${error}`);
     }
