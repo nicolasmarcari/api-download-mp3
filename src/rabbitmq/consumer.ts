@@ -1,3 +1,4 @@
+import Mp3Downloader from "../services/mp3download";
 import RabbitMQ from "./rabbitmq";
 
 export default class Consumer {
@@ -10,6 +11,8 @@ export default class Consumer {
     channel.consume(this.queue, async (msg) => {
       if(msg) {
         const content = JSON.parse(msg.content.toString());
+        const mp3Downloader = new Mp3Downloader();
+        mp3Downloader.downloadAudio(content.url, content.title);
 
         channel.ack(msg);
       }
